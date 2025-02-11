@@ -1,4 +1,4 @@
-# Koin-Nav-Scope
+# Koin-NavGraph-Scope
 Scope your dependencies using Koin + Compose Navigation for better memory and state management.
 
 The project demonstrates how to use Koin to provide dependencies to composable destinations within a navigation graph. Each feature navigation graph can have its own Koin scope, allowing for proper dependency management and state isolation.
