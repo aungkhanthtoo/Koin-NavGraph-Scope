@@ -2,18 +2,20 @@ package com.example.koinnavscope.featureC.ui.screenC2
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.dialog
+import com.example.koinnavscope.nav.dialogNavScope
 import kotlinx.serialization.Serializable
+import org.koin.androidx.compose.koinViewModel
 
 @Serializable
 internal object ScreenC2
 
 internal fun NavGraphBuilder.screenC2(
+    controller: NavController,
     onNavigateBack: () -> Unit,
     onNavigateToScreenB2: () -> Unit,
 ) {
-    dialog<ScreenC2> {
-        ScreenC2(onNavigateBack, onNavigateToScreenB2)
+    dialogNavScope<ScreenC2>(controller) {
+        ScreenC2(onNavigateBack, onNavigateToScreenB2, koinViewModel())
     }
 }
 

@@ -44,6 +44,7 @@ android {
 
 dependencies {
     api(project(":data:app"))
+    api(project(":core:nav"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 

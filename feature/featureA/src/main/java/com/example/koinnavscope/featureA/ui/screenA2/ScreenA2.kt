@@ -27,14 +27,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.koinnavscope.featureA.ui.screenA1.AppCounterCard
 import com.example.koinnavscope.featureA.ui.screenA1.CounterCard
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ScreenA2(
     onClickBack: () -> Unit,
     onClickFeatureB: () -> Unit,
-    viewModel: ScreenA2ViewModel = koinViewModel()
+    viewModel: ScreenA2ViewModel
 ) {
     val counter by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -75,7 +74,8 @@ internal fun ScreenA2(
                 trailingContent = {
                     Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, "ArrowRight")
                 },
-                modifier = Modifier.padding(horizontal = 24.dp)
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
                     .clickable(onClick = onClickFeatureB)
             )
         }

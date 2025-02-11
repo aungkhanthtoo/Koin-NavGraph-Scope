@@ -1,4 +1,4 @@
-package com.example.koinnavscope.data.app
+package com.example.koinnavscope.nav
 
 import org.koin.core.module.KoinDslMarker
 import org.koin.core.module.Module

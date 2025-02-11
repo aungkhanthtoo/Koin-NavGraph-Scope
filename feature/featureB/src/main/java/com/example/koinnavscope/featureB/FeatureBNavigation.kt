@@ -22,12 +22,14 @@ fun NavGraphBuilder.featureBGraph(
 ) {
     navigation<FeatureB>(startDestination = ScreenB1) {
         screenB1(
+            navController,
             onNavigateBack = navController::popBackStack,
             onNavigateToScreenC1 = onNavigateToScreenC1
         )
 
         navigation<FeatureB2>(startDestination = ScreenB2) {
             screenB2(
+                navController,
                 onNavigateBack = navController::popBackStack,
                 onNavigateToHome = onNavigateToHome
             )

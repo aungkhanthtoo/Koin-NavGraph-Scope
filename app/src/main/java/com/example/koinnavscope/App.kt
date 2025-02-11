@@ -22,13 +22,13 @@ import com.example.koinnavscope.featureB.ui.screenB2.navigateToScreenB2
 import com.example.koinnavscope.featureC.FeatureC
 import com.example.koinnavscope.featureC.featureCGraph
 import com.example.koinnavscope.featureC.navigateToFeatureC
-import com.example.koinnavscope.koin.KoinNavScope
 import com.example.koinnavscope.nav.navigator.BottomSheetNavigator
 import com.example.koinnavscope.nav.navigator.ModalBottomSheetHost
 import com.example.koinnavscope.nav.navigator.rememberBottomSheetNavigator
 import com.example.koinnavscope.ui.home.Home
 import com.example.koinnavscope.ui.home.homeDestination
 import com.example.koinnavscope.ui.theme.KoinNavScopeTheme
+import org.koin.androidx.compose.KoinAndroidContext
 import org.koin.core.annotation.KoinInternalApi
 
 @OptIn(KoinInternalApi::class)
@@ -37,7 +37,7 @@ fun App() {
     KoinNavScopeTheme {
         val navController = rememberNavController(rememberBottomSheetNavigator())
 
-        KoinNavScope(navController) {
+        KoinAndroidContext {
             AppNavHost(navController) {
                 // top level start destination
                 homeDestination(

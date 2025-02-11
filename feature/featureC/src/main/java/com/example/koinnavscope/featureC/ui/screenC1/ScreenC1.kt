@@ -40,14 +40,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ScreenC1(
     onClickBack: () -> Unit,
     onClickScreenC2: () -> Unit,
-    viewModel: ScreenC1ViewModel = koinViewModel()
+    viewModel: ScreenC1ViewModel
 ) {
     val counter by viewModel.uiState.collectAsStateWithLifecycle()
 
