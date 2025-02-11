@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Koin Nav Scope</string>
+    <string name="profile_shortcut_short_label">A2</string>
+    <string name="profile_shortcut_long_label">Screen A2</string>
+    <string name="profile_shortcut_short_label_c">C1</string>
+    <string name="profile_shortcut_long_label_c">Screen C1</string>
+    <string name="profile_shortcut_disabled_message">disabled</string>
+</resources>

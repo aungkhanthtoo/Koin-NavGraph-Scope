@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/baseline_thumb_up_24"
+        android:shortcutDisabledMessage="@string/profile_shortcut_disabled_message"
+        android:shortcutId="a2_shortcut"
+        android:shortcutLongLabel="@string/profile_shortcut_long_label"
+        android:shortcutShortLabel="@string/profile_shortcut_short_label"
+        tools:ignore="UnusedAttribute">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="koin-app://featureA/a2"
+            android:targetClass="com.example.koinnavscope.MainActivity"
+            android:targetPackage="com.example.koinnavscope">
+            <categories android:name="android.shortcut.conversation" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/baseline_shopping_cart_24"
+        android:shortcutDisabledMessage="@string/profile_shortcut_disabled_message"
+        android:shortcutId="c1_shortcut"
+        android:shortcutLongLabel="@string/profile_shortcut_long_label_c"
+        android:shortcutShortLabel="@string/profile_shortcut_short_label_c"
+        tools:ignore="UnusedAttribute">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="koin-app://featureC/c1"
+            android:targetClass="com.example.koinnavscope.MainActivity"
+            android:targetPackage="com.example.koinnavscope">
+            <categories android:name="android.shortcut.conversation" />
+        </intent>
+    </shortcut>
+</shortcuts>
