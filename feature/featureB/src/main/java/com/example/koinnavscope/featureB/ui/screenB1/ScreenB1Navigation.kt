@@ -1,7 +1,6 @@
 package com.example.koinnavscope.featureB.ui.screenB1
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
+import com.example.koinnavscope.nav.KoinNavGraphBuilder
 import com.example.koinnavscope.nav.composableNavScope
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
@@ -9,12 +8,11 @@ import org.koin.androidx.compose.koinViewModel
 @Serializable
 internal object ScreenB1
 
-internal fun NavGraphBuilder.screenB1(
-    navController: NavController,
+internal fun KoinNavGraphBuilder.screenB1(
     onNavigateBack: () -> Unit,
     onNavigateToScreenC1: () -> Unit
 ) {
-    composableNavScope<ScreenB1>(navController) {
+    composableNavScope<ScreenB1> {
         ScreenB1(onNavigateBack, onNavigateToScreenC1, koinViewModel())
     }
 }

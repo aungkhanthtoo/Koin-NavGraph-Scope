@@ -1,6 +1,5 @@
 package com.example.koinnavscope.nav
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -22,7 +21,7 @@ import org.koin.core.scope.Scope
 
 @OptIn(KoinInternalApi::class)
 @Composable
-fun NavGraphKoinScope(
+fun KoinNavGraphScope(
     entry: NavBackStackEntry,
     controller: NavController,
     content: @Composable () -> Unit
@@ -61,7 +60,6 @@ internal class NavScopeComponent(
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         if (event == Lifecycle.Event.ON_DESTROY) {
-            Log.d("NavGraphKoinScope", "close scope $scope")
             scope.close()
         }
     }

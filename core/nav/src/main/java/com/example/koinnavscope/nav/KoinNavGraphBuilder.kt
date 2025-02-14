@@ -14,13 +14,51 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDeepLink
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
+import androidx.navigation.NavigatorProvider
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import com.example.koinnavscope.nav.navigator.bottomSheet
+import kotlin.reflect.KClass
 import kotlin.reflect.KType
 
-inline fun <reified T : Any> NavGraphBuilder.composableNavScope(
+inline fun <reified T : Any> NavGraphBuilder.navigationScope(
+    startDestination: Any,
     controller: NavController,
+    typeMap: Map<KType, @JvmSuppressWildcards NavType<*>> = emptyMap(),
+    builder: KoinNavGraphBuilder.() -> Unit
+): Unit = destination(
+    KoinNavGraphBuilder(
+        provider,
+        startDestination,
+        T::class,
+        typeMap,
+        controller
+    ).apply(builder)
+)
+
+inline fun <reified T : Any> KoinNavGraphBuilder.navigationScope(
+    startDestination: Any,
+    typeMap: Map<KType, @JvmSuppressWildcards NavType<*>> = emptyMap(),
+    builder: KoinNavGraphBuilder.() -> Unit
+): Unit = destination(
+    KoinNavGraphBuilder(
+        provider,
+        startDestination,
+        T::class,
+        typeMap,
+        controller
+    ).apply(builder)
+)
+
+class KoinNavGraphBuilder(
+    provider: NavigatorProvider,
+    startDestination: Any,
+    route: KClass<*>?,
+    typeMap: Map<KType, @JvmSuppressWildcards NavType<*>>,
+    val controller: NavController
+) : NavGraphBuilder(provider, startDestination, route, typeMap)
+
+inline fun <reified T : Any> KoinNavGraphBuilder.composableNavScope(
     typeMap: Map<KType, @JvmSuppressWildcards NavType<*>> = emptyMap(),
     deepLinks: List<NavDeepLink> = emptyList(),
     noinline enterTransition:
@@ -54,35 +92,33 @@ inline fun <reified T : Any> NavGraphBuilder.composableNavScope(
         popExitTransition,
         sizeTransform
     ) {
-        NavGraphKoinScope(it, controller) {
+        KoinNavGraphScope(it, controller) {
             content(it)
         }
     }
 }
 
-inline fun <reified T : Any> NavGraphBuilder.dialogNavScope(
-    controller: NavController,
+inline fun <reified T : Any> KoinNavGraphBuilder.dialogNavScope(
     typeMap: Map<KType, @JvmSuppressWildcards NavType<*>> = emptyMap(),
     deepLinks: List<NavDeepLink> = emptyList(),
     dialogProperties: DialogProperties = DialogProperties(),
     noinline content: @Composable (NavBackStackEntry) -> Unit
 ) {
     dialog<T>(typeMap, deepLinks, dialogProperties) {
-        NavGraphKoinScope(it, controller) {
+        KoinNavGraphScope(it, controller) {
             content(it)
         }
     }
 }
 
-inline fun <reified T : Any> NavGraphBuilder.bottomSheetNavScope(
-    controller: NavController,
+inline fun <reified T : Any> KoinNavGraphBuilder.bottomSheetNavScope(
     typeMap: Map<KType, @JvmSuppressWildcards NavType<*>> = emptyMap(),
     arguments: List<NamedNavArgument> = emptyList(),
     deepLinks: List<NavDeepLink> = emptyList(),
     noinline content: @Composable ColumnScope.(backstackEntry: NavBackStackEntry) -> Unit
 ) {
     bottomSheet<T>(typeMap, arguments, deepLinks) {
-        NavGraphKoinScope(it, controller) {
+        KoinNavGraphScope(it, controller) {
             content(it)
         }
     }
