@@ -1,14 +1,15 @@
 package com.example.koinnavscope.featureC.ui.screenC1
 
 import androidx.navigation.navDeepLink
-import com.example.koinnavscope.nav.KoinNavGraphBuilder
+import com.example.koinnavscope.nav.NavGraphScopeBuilder
+import com.example.koinnavscope.nav.bottomSheet
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
 @Serializable
 internal object ScreenC1
 
-internal fun KoinNavGraphBuilder.screenC1(
+internal fun NavGraphScopeBuilder.screenC1(
     onNavigateBack: () -> Unit,
     onClickScreenC2: () -> Unit
 ) {

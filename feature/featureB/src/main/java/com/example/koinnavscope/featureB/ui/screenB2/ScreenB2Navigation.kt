@@ -2,14 +2,15 @@ package com.example.koinnavscope.featureB.ui.screenB2
 
 import androidx.navigation.NavController
 import androidx.navigation.NavOptionsBuilder
-import com.example.koinnavscope.nav.KoinNavGraphBuilder
+import com.example.koinnavscope.nav.NavGraphScopeBuilder
+import com.example.koinnavscope.nav.composable
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
 @Serializable
 object ScreenB2
 
-internal fun KoinNavGraphBuilder.screenB2(
+internal fun NavGraphScopeBuilder.screenB2(
     onNavigateBack: () -> Unit,
     onNavigateToHome: () -> Unit,
 ) {

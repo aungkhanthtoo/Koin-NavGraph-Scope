@@ -7,7 +7,8 @@ import com.example.koinnavscope.featureC.ui.screenC1.screenC1
 import com.example.koinnavscope.featureC.ui.screenC2.ScreenC2
 import com.example.koinnavscope.featureC.ui.screenC2.navigateToScreenC2
 import com.example.koinnavscope.featureC.ui.screenC2.screenC2
-import com.example.koinnavscope.nav.navigationScope
+import com.example.koinnavscope.nav.navigation
+import com.example.koinnavscope.nav.navigationKoinScope
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -20,7 +21,7 @@ fun NavGraphBuilder.featureCGraph(
     navController: NavController,
     onNavigateToScreenB2: () -> Unit,
 ) {
-    navigationScope<FeatureC>(startDestination = ScreenC1, navController) {
+    navigationKoinScope<FeatureC>(startDestination = ScreenC1, navController) {
         screenC1(
             onNavigateBack = navController::popBackStack,
             onClickScreenC2 = navController::navigateToScreenC2

@@ -26,12 +26,26 @@ fun KoinNavGraphScope(
     controller: NavController,
     content: @Composable () -> Unit
 ) {
+    KoinNavGraphScope(
+        entry,
+        controller::getNavScopeEntryOrNull,
+        content
+    )
+}
+
+@OptIn(KoinInternalApi::class)
+@Composable
+fun KoinNavGraphScope(
+    entry: NavBackStackEntry,
+    navScopeEntryProvider: (NavDestination, Koin) -> NavBackStackEntry?,
+    content: @Composable () -> Unit
+) {
     val koin = getKoin()
     var scope = LocalKoinScope.current
 
     val destination = entry.destination
-    val navScopeEntry = remember(controller, destination) {
-        controller.getNavScopeEntryOrNull(destination, koin)
+    val navScopeEntry = remember(navScopeEntryProvider, destination) {
+        navScopeEntryProvider(destination, koin)
     }
     scope = if (navScopeEntry != null) {
         koin.getScopeOrNull(navScopeEntry) ?: NavScopeComponent(navScopeEntry).scope
@@ -65,6 +79,15 @@ internal class NavScopeComponent(
     }
 }
 
+fun NavGraphScopeProvider.getNavScopeEntryOrNull(
+    destination: NavDestination,
+    koin: Koin
+): NavBackStackEntry? {
+    return getNavScopeRouteOrNull(destination, koin)?.let { route ->
+        getBackStackEntry(route)
+    }
+}
+
 internal fun NavController.getNavScopeEntryOrNull(
     destination: NavDestination,
     koin: Koin
@@ -74,7 +97,7 @@ internal fun NavController.getNavScopeEntryOrNull(
     }
 }
 
-internal fun NavController.getNavScopeRouteOrNull(
+internal fun getNavScopeRouteOrNull(
     destination: NavDestination,
     koin: Koin
 ): String? {
