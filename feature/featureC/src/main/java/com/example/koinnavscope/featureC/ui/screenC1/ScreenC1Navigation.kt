@@ -2,7 +2,6 @@ package com.example.koinnavscope.featureC.ui.screenC1
 
 import androidx.navigation.navDeepLink
 import com.example.koinnavscope.nav.KoinNavGraphBuilder
-import com.example.koinnavscope.nav.bottomSheetNavScope
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
@@ -13,7 +12,7 @@ internal fun KoinNavGraphBuilder.screenC1(
     onNavigateBack: () -> Unit,
     onClickScreenC2: () -> Unit
 ) {
-    bottomSheetNavScope<ScreenC1>(
+    bottomSheet<ScreenC1>(
         deepLinks = listOf(
             navDeepLink {
                 uriPattern = DEEPLINK_URI_C1

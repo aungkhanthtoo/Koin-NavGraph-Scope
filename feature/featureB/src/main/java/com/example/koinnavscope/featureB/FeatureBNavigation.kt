@@ -26,7 +26,7 @@ fun NavGraphBuilder.featureBGraph(
             onNavigateToScreenC1 = onNavigateToScreenC1
         )
 
-        navigationScope<FeatureB2>(startDestination = ScreenB2) {
+        navigation<FeatureB2>(startDestination = ScreenB2) {
             screenB2(
                 onNavigateBack = navController::popBackStack,
                 onNavigateToHome = onNavigateToHome

@@ -3,7 +3,6 @@ package com.example.koinnavscope.featureA.ui.screenA2
 import androidx.navigation.NavController
 import androidx.navigation.navDeepLink
 import com.example.koinnavscope.nav.KoinNavGraphBuilder
-import com.example.koinnavscope.nav.composableNavScope
 import kotlinx.serialization.Serializable
 import org.koin.androidx.compose.koinViewModel
 
@@ -14,7 +13,7 @@ internal fun KoinNavGraphBuilder.screenA2(
     onNavigateBack: () -> Unit,
     onNavigateToFeatureB: () -> Unit,
 ) {
-    composableNavScope<ScreenA2>(
+    composable<ScreenA2>(
         deepLinks = listOf(navDeepLink {
             uriPattern = DEEPLINK_URI_A2
         })
